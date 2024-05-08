@@ -1,7 +1,6 @@
 package springmvc2.exception.servlet;
 
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
-@RestController
+@Controller
 @Slf4j
 public class ServletExceptionController {
 
 
-    @GetMapping("/error-ex")
+    @GetMapping("/error-501")
     public String exception() {
-        throw new RuntimeException();
+        throw new RuntimeException("잘못된 사용자");
     }
 
     @GetMapping("/error-400")
