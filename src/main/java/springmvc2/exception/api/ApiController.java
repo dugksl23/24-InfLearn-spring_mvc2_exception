@@ -1,5 +1,6 @@
 package springmvc2.exception.api;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,14 +9,14 @@ import springmvc2.dto.MemberDto;
 
 @RestController
 @RequestMapping("/api/member")
+@Slf4j
 public class ApiController {
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public MemberDto getMember(@PathVariable("id") String id) {
         if (id.equals("501")) {
-            throw new RuntimeException("잘못된 사용자");
+            throw new RuntimeException("잘못된 접근");
         }
-
         return new MemberDto("dd", "dd");
     }
 }

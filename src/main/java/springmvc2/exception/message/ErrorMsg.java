@@ -1,4 +1,4 @@
-package springmvc2.exception.servlet;
+package springmvc2.exception.message;
 
 public class ErrorMsg {
 

@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import springmvc2.exception.servlet.ErrorMsg;
+import springmvc2.exception.message.ErrorMsg;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ import java.util.Map;
 public class ApiExceptionController {
 
 
-    @RequestMapping(value = "/error/501", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/error-page/501", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> error404API(HttpServletRequest request, HttpServletResponse response) {
 
         log.info("msg : {}", ErrorMsg.ERROR_EXCEPTION);
