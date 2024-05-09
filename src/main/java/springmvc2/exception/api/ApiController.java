@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springmvc2.dto.MemberDto;
+import springmvc2.exception.dto.MemberDto;
+import springmvc2.exception.UserException;
 
 import java.io.IOException;
 
@@ -18,11 +19,19 @@ public class ApiController {
 
     @GetMapping("/{id}")
     public MemberDto getMember(@PathVariable("id") String id, HttpServletResponse response) throws IOException, ChangeSetPersister.NotFoundException {
+        log.info("api member request 실행");
         if (id.equals("404")) {
-//            response.sendError(404, "404　오류");
+
             throw new RuntimeException();
-        } else if(id.equals("bad")){
+        }
+
+        if (id.equals("bad")) {
             throw new IllegalArgumentException("잘못된 입력 값 ");
+        }
+
+        if (id.equals("user-ex")) {
+            log.info("user ex error");
+            throw new UserException("user - ex ");
         }
 
         return new MemberDto("dd", "dd");

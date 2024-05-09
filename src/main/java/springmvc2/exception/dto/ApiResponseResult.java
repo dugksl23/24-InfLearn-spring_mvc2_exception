@@ -1,4 +1,4 @@
-package springmvc2.dto;
+package springmvc2.exception.dto;
 
 public class ApiResponseResult<T> {
     private Long count;

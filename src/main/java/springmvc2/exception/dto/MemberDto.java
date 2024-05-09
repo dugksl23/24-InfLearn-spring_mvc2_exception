@@ -1,4 +1,4 @@
-package springmvc2.dto;
+package springmvc2.exception.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
