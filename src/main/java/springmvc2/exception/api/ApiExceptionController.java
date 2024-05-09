@@ -21,17 +21,19 @@ import java.util.Map;
 public class ApiExceptionController {
 
 
-    @RequestMapping(value = "/error-page/501", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/error-page/404", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> error404API(HttpServletRequest request, HttpServletResponse response) {
 
         log.info("msg : {}", ErrorMsg.ERROR_EXCEPTION);
-        log.info("API error page 501");
+        log.info("API error page 404");
         Exception ex = (Exception) request.getAttribute(ErrorMsg.ERROR_EXCEPTION);
+        if (ex == null) {
+            log.info("ex null");
+        }
 
         Map result = new HashMap();
-        result.put("code", 501);
-        result.put("message",  ex.getMessage());
-        result.put("status", request.getAttribute(ErrorMsg.ERROR_STATUS_CODE));
+        result.put("code", 404);
+//        result.put("message",  ex.getMessage());
 
         Integer statusCode = (Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         return new ResponseEntity<>(result, HttpStatus.valueOf(statusCode));
