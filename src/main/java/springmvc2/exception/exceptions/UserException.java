@@ -1,4 +1,4 @@
-package springmvc2.exception;
+package springmvc2.exception.exceptions;
 
 public class UserException extends RuntimeException {
 
