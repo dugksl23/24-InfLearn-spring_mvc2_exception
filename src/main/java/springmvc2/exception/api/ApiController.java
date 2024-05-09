@@ -1,5 +1,6 @@
 package springmvc2.exception.api;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -18,10 +19,10 @@ import java.io.IOException;
 public class ApiController {
 
     @GetMapping("/{id}")
-    public MemberDto getMember(@PathVariable("id") String id, HttpServletResponse response) throws IOException, ChangeSetPersister.NotFoundException {
+    public MemberDto getMember(@PathVariable("id") String id, HttpServletResponse response, HttpServletRequest request) throws IOException, ChangeSetPersister.NotFoundException {
         log.info("api member request 실행");
-        if (id.equals("404")) {
-            throw new RuntimeException();
+        if (id.equals("500")) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"잘못된 접근");
         }
 
         if (id.equals("bad")) {

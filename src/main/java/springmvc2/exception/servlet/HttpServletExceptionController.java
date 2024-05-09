@@ -4,6 +4,7 @@ package springmvc2.exception.servlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -12,12 +13,6 @@ import java.io.IOException;
 @Controller
 @Slf4j
 public class HttpServletExceptionController {
-
-
-    @GetMapping("/error-501")
-    public String exception(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        throw new RuntimeException("잘못된 사용자");
-    }
 
     @GetMapping("/error-400")
     public void exception(HttpServletResponse response) throws IOException {
@@ -37,7 +32,7 @@ public class HttpServletExceptionController {
     @GetMapping("/error-500")
     public void exception500(HttpServletResponse response) throws IOException {
         log.info("505 들어오나요?");
-        response.sendError(500,"500 오류 ");
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"500 오류 ");
 
     }
 

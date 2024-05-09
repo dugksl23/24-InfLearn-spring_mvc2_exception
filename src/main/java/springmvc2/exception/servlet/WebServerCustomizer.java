@@ -13,7 +13,7 @@ public  class WebServerCustomizer implements WebServerFactoryCustomizer<Configur
     public void customize(ConfigurableServletWebServerFactory factory) {
         ErrorPage errorPage404 = new ErrorPage(HttpStatus.NOT_FOUND, "/error-page/404");
         ErrorPage errorPage500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/error-page/500");
-        ErrorPage errorPageEx = new ErrorPage(RuntimeException.class, "/error-page/501");
+        ErrorPage errorPageEx = new ErrorPage(RuntimeException.class, "/error-page/4xx");
 
         factory.addErrorPages(errorPage404, errorPage500, errorPageEx);
     }
