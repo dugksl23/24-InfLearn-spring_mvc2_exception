@@ -21,7 +21,6 @@ public class ApiController {
     public MemberDto getMember(@PathVariable("id") String id, HttpServletResponse response) throws IOException, ChangeSetPersister.NotFoundException {
         log.info("api member request 실행");
         if (id.equals("404")) {
-
             throw new RuntimeException();
         }
 
@@ -31,7 +30,7 @@ public class ApiController {
 
         if (id.equals("user-ex")) {
             log.info("user ex error");
-            throw new UserException("user - ex ");
+            throw new UserException("user - ex 잘못 실행됨");
         }
 
         return new MemberDto("dd", "dd");

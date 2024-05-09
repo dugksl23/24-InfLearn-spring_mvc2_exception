@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springmvc2.exception.resolver.MyHandlerExceptionResolver;
+import springmvc2.exception.resolver.UserHandlerExceptionResolver;
 
 import java.util.List;
 
@@ -13,10 +14,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
         resolvers.add(new MyHandlerExceptionResolver());
-    }
-
-    @Override
-    public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-        WebMvcConfigurer.super.configureHandlerExceptionResolvers(resolvers);
+        resolvers.add(new UserHandlerExceptionResolver());
     }
 }

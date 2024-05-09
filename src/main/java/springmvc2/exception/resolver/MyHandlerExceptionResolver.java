@@ -2,6 +2,7 @@ package springmvc2.exception.resolver;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.constraints.Null;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -40,6 +41,9 @@ public class MyHandlerExceptionResolver implements HandlerExceptionResolver {
             log.info("resolver ex", e);
         }
         return null;
-        // return 을 null 로 가면 호출하는 곳까지 error 가 올라간다.
+        // Null 을 반환하면, 다음 ExceptionResolver 를 찾아서 실행한다.
+        // 만약 처리할 수 있는 ExceptionResolver 가 없다면, 예외 처리가 안되고,
+        // 기존에 발생한 예외를 서블릿 밖으로 던진다.
+        // -> was 까지 전달 후 view 에 에러 메세지를 렌더링.
     }
 }
