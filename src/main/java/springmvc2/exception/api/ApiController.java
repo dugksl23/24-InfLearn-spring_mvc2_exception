@@ -3,12 +3,10 @@ package springmvc2.exception.api;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.TypeMismatchException;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import springmvc2.exception.dto.MemberDto;
 import springmvc2.exception.exceptions.BadRequestException;
@@ -25,7 +23,7 @@ public class ApiController {
     public MemberDto getMember(@PathVariable("id") String id, HttpServletResponse response, HttpServletRequest request) throws IOException, ChangeSetPersister.NotFoundException {
         log.info("api member request 실행");
         if (id.equals("500")) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"잘못된 접근");
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "잘못된 접근");
         }
 
         if (id.equals("bad")) {
@@ -42,13 +40,19 @@ public class ApiController {
 
 
     @GetMapping("/response-status-ex1")
-    public String responseStatusEx1(){
+    public String responseStatusEx1() {
         throw new BadRequestException();
     }
 
     @GetMapping("/response-status-ex2")
-    public String responseStatusEx2(){
+    public String responseStatusEx2() {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "error.bad", new IllegalStateException("error.bad"));
+    }
+
+    @GetMapping("/default-handler-ex")
+    public String defaultHandlerEx(@RequestParam("id") Integer id) {
+        log.info("member id : {}", id);
+        return "ok";
     }
 
 }

@@ -10,7 +10,7 @@ server:
   error:
     whitelabel:
       enabled: false
-    include-exception: true
+    include-exception: false
     include-message: always
     include-stacktrace: never
     include-binding-errors: never
