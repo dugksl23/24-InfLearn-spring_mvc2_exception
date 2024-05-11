@@ -15,8 +15,8 @@ import springmvc2.exception.exceptions.UserException;
 
 @RestControllerAdvice
 //        (basePackages = "springmvc2.exception.api")
-        (basePackageClasses = {ApiExceptionControllerV3.class})
-public class ExceptionControllerAdvice {
+        (assignableTypes = ApiExceptionControllerV3.class)
+public class ExceptionControllerAdviceV2 {
 
     //ExceptionResolver 가 호출함.
     @ExceptionHandler(IllegalArgumentException.class)

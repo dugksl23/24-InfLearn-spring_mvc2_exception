@@ -22,7 +22,7 @@ public class ApiExceptionControllerV3 {
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public MemberDto getMember(@PathVariable("id") String id, HttpServletResponse response, HttpServletRequest request) throws IOException, ChangeSetPersister.NotFoundException {
-        log.info("api memberExceptipnControllerV3 실행");
+        log.info("api memberExceptionControllerV3 실행");
 
         if (id.equals("runtime")) {
             throw new RuntimeException("runtime error");
