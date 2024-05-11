@@ -6,11 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class ApiResponseResult<T> {
-    private Long count;
-    private T data;
+@NoArgsConstructor
+public class ApiErrorResponseResult<T> {
+    private T error;
 }
